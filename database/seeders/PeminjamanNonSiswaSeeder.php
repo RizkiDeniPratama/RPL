@@ -11,16 +11,21 @@ class PeminjamanNonSiswaSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create 5 peminjaman non siswa
+        $anggota = AnggotaNonSiswa::pluck('NoAnggotaN')->toArray();
+        $petugas = Petugas::pluck('KodePetugas')->toArray();
+
+        if (empty($anggota) || empty($petugas)) {
+            $this->command->warn('Seeder PeminjamanNonSiswa dilewati karena anggota non siswa atau petugas kosong.');
+            return;
+        }
+
         PeminjamanNonSiswa::factory()
             ->count(5)
-            ->create([
-                'NoAnggotaN' => function () {
-                    return AnggotaNonSiswa::inRandomOrder()->first()->NoAnggotaN;
-                },
-                'KodePetugas' => function () {
-                    return Petugas::inRandomOrder()->first()->KodePetugas;
-                }
-            ]);
+            ->make()
+            ->each(function ($peminjaman) use ($anggota, $petugas) {
+                $peminjaman->NoAnggotaN = fake()->randomElement($anggota);
+                $peminjaman->KodePetugas = fake()->randomElement($petugas);
+                $peminjaman->save();
+            });
     }
 }

@@ -2,25 +2,32 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use App\Models\PeminjamanSiswa;
 use App\Models\Anggota;
 use App\Models\Petugas;
-use Illuminate\Database\Seeder;
 
 class PeminjamanSiswaSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create 10 peminjaman siswa
+        $anggota = Anggota::pluck('NoAnggotaM')->toArray();
+        $petugas = Petugas::pluck('KodePetugas')->toArray();
+
+        // Cek apakah data tersedia
+        if (empty($anggota) || empty($petugas)) {
+            $this->command->warn('Seeder PeminjamanSiswa dilewati karena anggota atau petugas kosong.');
+            return;
+        }
+
         PeminjamanSiswa::factory()
             ->count(10)
-            ->create([
-                'NoAnggotaM' => function () {
-                    return Anggota::inRandomOrder()->first()->NoAnggotaM;
-                },
-                'KodePetugas' => function () {
-                    return Petugas::inRandomOrder()->first()->KodePetugas;
-                }
-            ]);
+            ->make()
+            ->each(function ($peminjaman) use ($anggota, $petugas) {
+                $peminjaman->NoAnggotaM = fake()->randomElement($anggota);
+                $peminjaman->KodePetugas = fake()->randomElement($petugas);
+                $peminjaman->save();
+            });
     }
 }
+

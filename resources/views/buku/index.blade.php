@@ -43,7 +43,7 @@
         <td>{{ $item->Judul }}</td>
         <td>{{ $item->Penerbit }}</td>
         <td>{{ $item->Pengarang }}</td>
-        <td>{{ $item->TahunTerbit->format('Y') }}</td>
+        <td>{{ $item->TahunTerbit}}</td>
         <td>{{ $item->ISBN }}</td>
         <td>{{ $item->Stok }}</td>
         <td class="text-center">

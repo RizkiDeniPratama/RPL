@@ -15,16 +15,15 @@ class DatabaseSeeder extends Seeder
 
         // Create users
         $this->call([
-            PetugasSeeder::class,
-            BukuSeeder::class,
-            AnggotaSeeder::class,
-            DetailPeminjamanSiswaSeeder::class,
-            DetailPeminjamanNonSiswaSeeder::class,
-            LaporanSeeder::class,
-            PeminjamanSiswaSeeder::class,
-            PeminjamanNonSiswaSeeder::class,
-            PetugasSeeder::class,
-            PinjamDetailSeeder::class,
+    PetugasSeeder::class,
+    AnggotaSeeder::class,
+    BukuSeeder::class,
+    PeminjamanSiswaSeeder::class,
+    DetailPeminjamanSiswaSeeder::class,
+    DetailPeminjamanNonSiswaSeeder::class,
+    LaporanSeeder::class,
+    PeminjamanNonSiswaSeeder::class,
+    PinjamDetailSeeder::class,
         ]);
     }
 }

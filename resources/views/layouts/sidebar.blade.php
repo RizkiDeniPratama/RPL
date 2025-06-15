@@ -39,20 +39,13 @@
         </li>
 
         <!-- Categories -->
-        <li class="menu-item {{ Request::is('kategori*') ? 'active' : '' }}">
+        {{-- <li class="menu-item {{ Request::is('kategori*') ? 'active' : '' }}">
           <a href="{{ route('kategori.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-category"></i>
             <div data-i18n="Categories">Kategori</div>
           </a>
-        </li>
+        </li> --}}
 
-        <!-- Racks -->
-        <li class="menu-item {{ Request::is('rak*') ? 'active' : '' }}">
-          <a href="{{ route('rak.index') }}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-cabinet"></i>
-            <div data-i18n="Racks">Rak</div>
-          </a>
-        </li>
 
         <!-- Officers -->
         <li class="menu-item {{ Request::is('petugas*') ? 'active' : '' }}">
