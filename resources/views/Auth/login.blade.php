@@ -47,11 +47,11 @@
                   <span class="app-brand-logo demo">
                     <i class="menu-icon tf-icons bx bx-book-reader text-primary" style="font-size: 2rem;"></i>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">PerpusApp</span>
+                  <span class="app-brand-text demo text-body fw-bolder">Perpustakaan SMP Tepal</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Selamat Datang Di PerpusApp🙌</h4>
+              <h4 class="mb-2">Selamat Datang 🙌</h4>
               <p class="mb-4">Silahkan login untuk Kelola Perpustakaan</p>
 
               @if($errors->has('login_error'))
