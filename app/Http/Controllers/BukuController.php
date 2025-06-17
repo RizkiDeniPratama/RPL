@@ -34,7 +34,7 @@ class BukuController extends Controller
         $kodeBuku = 'B' . str_pad(Buku::max('id') + 1, 4, '0', STR_PAD_LEFT);
         $request->merge(['KodeBuku' => $kodeBuku]);
 
-        Buku::create($request->only());
+        Buku::create($request->all());
         return redirect()->route('buku.index')->with('success', 'Buku berhasil ditambahkan');
     }
 
@@ -61,7 +61,7 @@ class BukuController extends Controller
             'Stok' => 'required|integer|min:0',
         ]);
 
-        $buku->update($request->only());
+        $buku->update($request->all());
         return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui');
     }
 

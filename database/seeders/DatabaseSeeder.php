@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Anggota;
+use App\Models\AnggotaNonSiswa;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory;
@@ -16,7 +19,7 @@ class DatabaseSeeder extends Seeder
         // Create users
         $this->call([
     PetugasSeeder::class,
-    AnggotaSeeder::class,
+    // AnggotaSeeder::class,
     BukuSeeder::class,
     PeminjamanSiswaSeeder::class,
     DetailPeminjamanSiswaSeeder::class,
@@ -28,8 +31,8 @@ class DatabaseSeeder extends Seeder
     }
 }
 //         $petugas = Petugas::factory(5)->create();
-//         $anggotas = Anggota::factory(20)->create();
-//         $anggotaNonSiswa = AnggotaNonSiswa::factory(20)->create();
+        $anggotas = Anggota::factory(20)->create();
+        $anggotaNonSiswa = AnggotaNonSiswa::factory(20)->create();
 //         $buku = Buku::factory(20)->create();
 
 //         //Create peminjaman siswa and its details

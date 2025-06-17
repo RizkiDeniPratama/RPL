@@ -15,7 +15,6 @@ class PetugasSeeder extends Seeder
      */
     public function run(): void
     {
-        Petugas::factory()->count(10)->create();
        Petugas::create([
             'KodePetugas' => 'PTG01',
             'Nama' => 'Admin Perpustakaan',

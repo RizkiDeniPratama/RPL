@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <form action="{{ route('buku.update', $buku->KodeBuku) }}" method="POST">
                         @csrf
-                        @method('PUT')
+                        @method('put')
                         <div class="row">
                             <div class="col-md-6">
 
@@ -69,7 +69,7 @@
                                 {{-- Tahun Terbit --}}
                                 <div class="mb-3">
                                     <label class="form-label" for="TahunTerbit">Tahun Terbit</label>
-                                    <input type="number" class="form-control @error('TahunTerbit') is-invalid @enderror" id="TahunTerbit" name="TahunTerbit" value="{{ old('TahunTerbit', $buku->TahunTerbit ? $buku->TahunTerbit->format('Y') : '') }}" required />
+                                    <input type="number" class="form-control @error('TahunTerbit') is-invalid @enderror" id="TahunTerbit" name="TahunTerbit" value="{{ old('TahunTerbit', $buku->TahunTerbit ? $buku->TahunTerbit : '') }}" required />
                                     @error('TahunTerbit')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

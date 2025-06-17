@@ -23,40 +23,47 @@
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped" id="mainTable">
                             <thead class="table-light">
-    <tr>
-        <th>Kode Buku</th>
-        <th>No UDC</th> {{-- ✅ Tambahan --}}
-        <th>Judul</th>
-        <th>Penerbit</th>
-        <th>Pengarang</th>
-        <th>Tahun Terbit</th>
-        <th>ISBN</th>
-        <th>Stok</th>
-        <th class="text-center">Aksi</th>
-    </tr>
-</thead>
-<tbody>
-    @forelse($buku as $item)
-    <tr>
-        <td>{{ $item->KodeBuku }}</td>
-        <td>{{ $item->NoUDC }}</td> {{-- ✅ Tambahan --}}
-        <td>{{ $item->Judul }}</td>
-        <td>{{ $item->Penerbit }}</td>
-        <td>{{ $item->Pengarang }}</td>
-        <td>{{ $item->TahunTerbit}}</td>
-        <td>{{ $item->ISBN }}</td>
-        <td>{{ $item->Stok }}</td>
-        <td class="text-center">
-            ...
-        </td>
-    </tr>
-    @empty
-    <tr>
-        <td colspan="9" class="text-center">Tidak ada data buku.</td> {{-- ✅ ubah colspan jadi 9 --}}
-    </tr>
-    @endforelse
-</tbody>
-
+                                <tr>
+                                    <th>Kode Buku</th>
+                                    <th>No UDC</th>
+                                    <th>Judul</th>
+                                    <th>Penerbit</th>
+                                    <th>Pengarang</th>
+                                    <th>Tahun Terbit</th>
+                                    <th>ISBN</th>
+                                    <th>Stok</th>
+                                    <th class="text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($buku as $item)
+                                <tr>
+                                    <td>{{ $item->KodeBuku }}</td>
+                                    <td>{{ $item->NoUDC }}</td>
+                                    <td>{{ $item->Judul }}</td>
+                                    <td>{{ $item->Penerbit }}</td>
+                                    <td>{{ $item->Pengarang }}</td>
+                                    <td>{{ $item->TahunTerbit }}</td>
+                                    <td>{{ $item->ISBN }}</td>
+                                    <td>{{ $item->Stok }}</td>
+                                    <td class="text-center">
+                                        <div class="btn-group gap-1" role="group">
+                                            <a href="{{ route('buku.show', $item) }}" class="btn btn-info btn-sm" title="Detail"><i class="bx bx-show"></i></a>
+                                            <a href="{{ route('buku.edit', $item) }}" class="btn btn-warning btn-sm" title="Edit"><i class="bx bx-edit"></i></a>
+                                            <form action="{{ route('buku.destroy', $item) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Hapus" onclick="return confirm('Yakin ingin menghapus?')"><i class="bx bx-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">Tidak ada data buku.</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
                         </table>
                     </div>
                     <div class="d-flex justify-content-end mt-3">

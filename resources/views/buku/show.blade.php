@@ -24,7 +24,7 @@
                 <p class="form-control-static fw-semibold">{{ $buku->KodeBuku }}</p>
             </div>
             <div class="mb-3">
-                <label class="form-label text-muted">No UDC</label> {{-- ✅ Tambahan --}}
+                <label class="form-label text-muted">No UDC</label> 
                 <p class="form-control-static fw-semibold">{{ $buku->NoUDC }}</p>
             </div>
             <div class="mb-3">
@@ -49,7 +49,7 @@
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label class="form-label text-muted">Tahun Terbit</label>
-                                        <p class="form-control-static fw-semibold">{{ $buku->TahunTerbit ? $buku->TahunTerbit->format('Y') : '' }}</p>
+                                        <p class="form-control-static fw-semibold">{{ $buku->TahunTerbit ? $buku->TahunTerbit : '' }}</p>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label text-muted">ISBN</label>
