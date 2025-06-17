@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
     PeminjamanSiswaSeeder::class,
     DetailPeminjamanSiswaSeeder::class,
     DetailPeminjamanNonSiswaSeeder::class,
-    LaporanSeeder::class,
     PeminjamanNonSiswaSeeder::class,
     PinjamDetailSeeder::class,
         ]);
