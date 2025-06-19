@@ -141,9 +141,36 @@
                             </a>
                         </div>
                     @elseif(isset($peminjaman))
-                        <div class="d-flex justify-content-end mt-3">
-                            <a href="{{route('pengembalian.store',['peminjaman_id' => $peminjaman instanceof \App\Models\PeminjamanSiswa ? $peminjaman->NoPinjamM : $peminjaman->NoPinjamN])}}" class="btn btn-success">Proses Pengembalian</a>
-                        </div>
+                            <div class="d-flex justify-content-end mt-3">
+        <form action="{{ route('pengembalian.store', ['peminjaman_id' => $peminjaman instanceof \App\Models\PeminjamanSiswa ? $peminjaman->NoPinjamM : $peminjaman->NoPinjamN]) }}" method="POST" onsubmit="return confirm('Proses pengembalian?')" style="display: inline;">
+            @csrf
+            
+            <!-- Input hidden untuk peminjaman_id -->
+            <input type="hidden" name="peminjaman_id" value="{{ $peminjaman instanceof \App\Models\PeminjamanSiswa ? $peminjaman->NoPinjamM : $peminjaman->NoPinjamN }}">
+            
+            <!-- Input hidden untuk TglKembali (tanggal hari ini) -->
+            <input type="hidden" name="TglKembali" value="{{ date('Y-m-d') }}">
+            
+            <!-- Input hidden untuk Denda (hitung otomatis) -->
+            @php
+                $today = \Carbon\Carbon::now();
+                $jatuhTempo = \Carbon\Carbon::parse($peminjaman->TglJatuhTempo);
+                $hariTerlambat = $today->greaterThan($jatuhTempo) ? $today->diffInDays($jatuhTempo) : 0;
+                $dendaPerHari = 1000; // Rp 1.000 per hari
+                $totalDenda = $hariTerlambat * $dendaPerHari;
+            @endphp
+            <input type="hidden" name="Denda" value="{{ $totalDenda }}">
+            
+            <button type="submit" class="btn btn-success">
+                Proses Pengembalian
+                @if($hariTerlambat > 0)
+                    <small class="d-block text-light" style="font-size: 10px;">
+                        (Denda: Rp {{ number_format($totalDenda, 0, ',', '.') }})
+                    </small>
+                @endif
+            </button>
+        </form>
+    </div>
                     @endif
                 </div>
             </div>

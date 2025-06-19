@@ -26,29 +26,20 @@
    <!-- Cards -->
     <div class="col-lg-6 col-md-4 order-1">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <span class="fw-semibold d-block mb-1 text-center">Peminjaman Siswa</span>
-                    <h3 class="card-title mb-2"><div class="fs-5 text-primary text-center">{{ $peminjaman_siswa->count() }}</div></h3>
+                    <span class="fw-semibold d-block mb-1 text-center"> Total Peminjaman </span>
+                    <h3 class="card-title mb-2"><div class="fs-5 text-primary text-center">{{ $peminjaman_siswa->count() + $peminjaman_non_siswa->count() }}</div></h3>
                     <small class="text-success fw-semibold d-flex justify-content-center"><i class="bx bx-up-arrow-alt"></i> Total</small>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <span class="fw-semibold d-block mb-1 text-center">Pengembalian Siswa</span>
-                    <h3 class="card-title mb-2"><div class="fs-5 text-primary text-center">{{ $pengembalian_siswa->count() }}</div></h3>
-                    <small class="text-success fw-semibold d-flex justify-content-center"><i class="bx bx-up-arrow-alt"></i> Total</small>
-                    </div>
-                </div>
-            </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <span class="fw-semibold d-block mb-1 text-center">Peminjaman NonSiswa</span>
-                    <h3 class="card-title mb-2"><div class="fs-5 text-primary text-center">{{ $peminjaman_non_siswa->count() }}</div></h3>
+                    <span class="fw-semibold d-block mb-1 text-center">Total Pengembalian</span>
+                    <h3 class="card-title mb-2"><div class="fs-5 text-primary text-center">{{ $pengembalian_siswa->count() + $pengembalian_non_siswa->count() }}</div></h3>
                     <small class="text-success fw-semibold d-flex justify-content-center"><i class="bx bx-up-arrow-alt"></i> Total</small>
                     </div>
                 </div>

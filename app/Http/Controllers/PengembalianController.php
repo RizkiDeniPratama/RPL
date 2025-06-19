@@ -107,6 +107,7 @@ class PengembalianController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // dd($request->all());
         $request->validate([
             'peminjaman_id' => 'required|string',
             'TglKembali' => 'required|date',

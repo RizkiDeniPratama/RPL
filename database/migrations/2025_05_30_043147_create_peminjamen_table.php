@@ -42,7 +42,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('peminjamen_header_siswa');
-        Schema::dropIfExists('peminjamen_header_Non_siswa');
+        Schema::dropIfExists('peminjamen_header_non_siswa');
         Schema::dropIfExists('peminjamen_detail');
     }
 };
