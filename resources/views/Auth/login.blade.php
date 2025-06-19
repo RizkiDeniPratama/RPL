@@ -47,7 +47,7 @@
                   <span class="app-brand-logo demo">
                     <i class="menu-icon tf-icons bx bx-book-reader text-primary" style="font-size: 2rem;"></i>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Perpustakaan SMP Tepal</span>
+                  <span class="fw-bolder" style="font-size: 1.2rem">Perpustakaan SMP Tepal</span>
                 </a>
               </div>
               <!-- /Logo -->
