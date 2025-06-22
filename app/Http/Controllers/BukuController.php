@@ -41,7 +41,6 @@ class BukuController extends Controller
         }
 
         $kodeBuku = 'B' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
-        // $kodeBuku = 'B' . str_pad(Buku::max('id') + 1, 4, '0', STR_PAD_LEFT);
         $request->merge(['KodeBuku' => $kodeBuku]);
 
         Buku::create($request->all());
