@@ -80,9 +80,6 @@
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Password</label>
-                    <a href="{{route('forgot-password')}}">
-                      <small>Lupa Password?</small>
-                    </a>
                   </div>
                   <div class="input-group input-group-merge">
                     <input
@@ -111,9 +108,9 @@
               </form>
 
               <p class="text-center">
-                <span>Belum Punya Akun ?</span>
-                <a href="{{route('register')}}">
-                  <span>Buat Akun Sekarang</span>
+                <span>Lupa Kata Sandi?</span>
+                <a href="{{route('forgot-password')}}">
+                  <span>Ganti Password</span>
                 </a>
               </p>
             </div>
