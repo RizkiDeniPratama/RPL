@@ -26,12 +26,22 @@ class BukuController extends Controller
             'Penerbit' => 'required|string|max:255',
             'Pengarang' => 'required|string|max:255',
             'TahunTerbit' => 'required|digits:4|integer',
-            'Deskripsi' => 'required|string',
+            'Deskripsi' => 'required|string|max:300',
             'ISBN' => 'required|string|unique:buku,ISBN',
             'Stok' => 'required|integer|min:0',
         ]);
 
-        $kodeBuku = 'B' . str_pad(Buku::max('id') + 1, 4, '0', STR_PAD_LEFT);
+        $lastBook = Buku::orderBy('KodeBuku', 'desc') ->first();
+
+        if ($lastBook) {
+        $lastNumber = intval(substr($lastBook->KodeBuku, 1));
+        $newNumber = $lastNumber + 1;
+        } else {
+        $newNumber = 1; 
+        }
+
+        $kodeBuku = 'B' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+        // $kodeBuku = 'B' . str_pad(Buku::max('id') + 1, 4, '0', STR_PAD_LEFT);
         $request->merge(['KodeBuku' => $kodeBuku]);
 
         Buku::create($request->all());
