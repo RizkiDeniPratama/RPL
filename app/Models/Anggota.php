@@ -25,10 +25,6 @@ class Anggota extends Model
         'NoTelpOrtu',
     ];
 
-    protected $casts = [
-        'TTL' => 'datetime',
-    ];
-
     public function peminjaman_siswa()
     {
         return $this->hasMany(PeminjamanSiswa::class, 'NoAnggotaM', 'NoAnggotaM');

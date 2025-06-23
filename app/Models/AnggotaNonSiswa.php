@@ -23,12 +23,6 @@ class AnggotaNonSiswa extends Model
         'Alamat',
         'KodePos',
         'NoTelpHp',
-        'TglDaftar',
-    ];
-
-    protected $casts = [
-        'TTL' => 'datetime',
-        'TglDaftar' => 'datetime',
     ];
 
     public function peminjaman_Non_Siswa()

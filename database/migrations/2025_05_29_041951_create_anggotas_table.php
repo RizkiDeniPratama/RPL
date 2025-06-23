@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('NoAnggotaM')->primary();
             $table->string('NIS')->nullable();
             $table->string('NamaAnggota')->nullable();
-            $table->date('TTL')->nullable();
+            $table->string('TTL')->nullable();
             $table->string('Jenis_Kelamin')->nullable();
             $table->string('Alamat')->nullable();
             $table->string('Kelas')->nullable();
@@ -30,11 +30,10 @@ return new class extends Migration
             $table->string('NIP');
             $table->string('NamaAnggota');
             $table->string('Jabatan');
-            $table->date('TTL');
+            $table->string('TTL');
             $table->string('Alamat');
             $table->string('KodePos');
             $table->string('NoTelpHp');
-            $table->date('TglDaftar');
             $table->timestamps();
         });
     }
