@@ -40,7 +40,7 @@
                                     <td>{{ $item->NoAnggotaM }}</td>
                                     <td>{{ $item->NIS }}</td>
                                     <td>{{ $item->NamaAnggota }}</td>
-                                    <td>{{ $item->JenisKelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
+                                    <td>{{ $item->Jenis_Kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                     <td>{{ $item->Kelas }}</td>
                                     <td>{{ $item->NoTelp }}</td>
                                     <td>
