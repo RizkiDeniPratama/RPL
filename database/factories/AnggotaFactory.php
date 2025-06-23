@@ -50,7 +50,7 @@ class AnggotaFactory extends Factory
             'Jenis_Kelamin' => $index % 2 == 0 ? 'L' : 'P', 
             'Alamat' => $this->faker->streetAddress() . ', ' . $this->faker->city(),
             'Kelas' => $this->faker->randomElement(['VII', 'VIII', 'IX']) . ' ' . 
-                      $this->faker->numberBetween(1, 3),
+                      $this->faker->randomElement(['A', 'B']),
             'NoTelp' => '08' . $this->faker->numerify('##########'),
             'NamaOrtu' => $namaOrtu[$index],
             'NoTelpOrtu' => '08' . $this->faker->numerify('##########'),
