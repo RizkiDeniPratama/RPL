@@ -96,6 +96,7 @@
                                     <th>Judul Buku</th>
                                     <th>Jumlah Buku</th>
                                     @if (isset($peminjaman) && $peminjaman->status === 'dipinjam')
+                                    @dd($peminjaman)
                                         <th class="text-center">Aksi</th>
                                     @endif
                                 </tr>
