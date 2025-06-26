@@ -28,7 +28,6 @@ class AnggotaNonSiswaController extends Controller
             'Jabatan' => 'required|string|max:100',
             'TTL' => 'required|date',
             'Alamat' => 'required|string',
-            'KodePos' => 'required|string|max:10',
             'NoTelpHp' => 'required|string|max:15',
         ]);
 
@@ -60,7 +59,6 @@ class AnggotaNonSiswaController extends Controller
             'Jabatan' => 'required|string|max:100',
             'TTL' => 'required|date',
             'Alamat' => 'required|string',
-            'KodePos' => 'required|string|max:10',
             'NoTelpHp' => 'required|string|max:15',
         ]);
 

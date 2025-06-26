@@ -22,7 +22,6 @@ class AnggotaNonSiswa extends Model
         'JenisKelamin',
         'TanggalLahir',
         'Alamat',
-        'KodePos',
         'NoTelpHp',
     ];
 
