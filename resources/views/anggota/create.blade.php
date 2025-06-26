@@ -17,13 +17,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="NoAnggotaM">No Anggota</label>
-                                    <input type="text" class="form-control @error('NoAnggotaM') is-invalid @enderror" id="NoAnggotaM" name="NoAnggotaM" value="{{ old('NoAnggotaM') }}" required />
-                                    @error('NoAnggotaM')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
                                     <label class="form-label" for="NIS">NIS</label>
                                     <input type="text" class="form-control @error('NIS') is-invalid @enderror" id="NIS" name="NIS" value="{{ old('NIS') }}" required />
                                     @error('NIS')

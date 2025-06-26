@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota;
+use App\Models\Buku;
 use Illuminate\Http\Request;
 
 class AnggotaController extends Controller
@@ -22,14 +23,27 @@ class AnggotaController extends Controller
     {
         $request->validate([
             'NIS' => 'required|string|max:255|unique:anggota',
-            'Nama' => 'required|string|max:255',
-            'JenisKelamin' => 'required|in:L,P',
-            'NoTelp' => 'required|string|max:15',
+            'NamaAnggota' => 'required|string|max:255',
+            'TanggalLahir' => 'required|date',
+            'Jenis_Kelamin' => 'required|in:L,P',
+            'NoTelp' => 'nullable|string|max:15',
             'Alamat' => 'required|string',
             'Kelas' => 'required|string|max:10',
-        ]);
+            'NamaOrtu' => 'required|string|max:10',
+            'NoTelpOrtu' => 'required|string|max:10',
 
-        $noAnggota = 'M' . str_pad(Anggota::count() + 1, 4, '0', STR_PAD_LEFT);
+        ]);
+        $lastAnggota = Anggota::orderBy('NoAnggotaM', 'desc')->first();
+
+        if ($lastAnggota) {
+            $lastAnggota = intval(substr($lastAnggota->NoAnggota, 1));
+            $newAnggota = $lastAnggota + 1;
+        } else {
+            $newAnggota = 1;
+        }
+        
+
+        $noAnggota = 'M' . str_pad($newAnggota, 1, '0', STR_PAD_LEFT);
         $request->merge(['NoAnggotaM' => $noAnggota]);
 
         Anggota::create($request->all());

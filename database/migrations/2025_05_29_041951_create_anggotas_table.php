@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('anggota', function (Blueprint $table) {
             $table->string('NoAnggotaM')->primary();
-            $table->string('NIS')->nullable();
+            $table->string('NIS')->unique();
             $table->string('NamaAnggota')->nullable();
-            $table->string('TTL')->nullable();
-            $table->string('Jenis_Kelamin')->nullable();
+            $table->string('TanggalLahir')->nullable();
+            $table->string('JenisKelamin')->nullable();
             $table->string('Alamat')->nullable();
             $table->string('Kelas')->nullable();
             $table->string('NoTelp')->nullable();
@@ -27,13 +27,14 @@ return new class extends Migration
 
         Schema::create('anggota_non_siswa', function (Blueprint $table) {
             $table->string('NoAnggotaN')->primary();
-            $table->string('NIP');
-            $table->string('NamaAnggota');
-            $table->string('Jabatan');
-            $table->string('TTL');
-            $table->string('Alamat');
-            $table->string('KodePos');
-            $table->string('NoTelpHp');
+            $table->string('NIP')->unique();
+            $table->string('NamaAnggota')->nullable();
+            $table->string('Jabatan')->nullable();
+            $table->string('JenisKelamin')->nullable();
+            $table->string('TanggalLahir')->nullable();
+            $table->string('Alamat')->nullable();
+            $table->string('KodePos')->nullable();
+            $table->string('NoTelpHp')->nullable();
             $table->timestamps();
         });
     }

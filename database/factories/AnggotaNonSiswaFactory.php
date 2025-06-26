@@ -20,13 +20,13 @@ class AnggotaNonSiswaFactory extends Factory
     public function definition(): array
     {
         $namaGuru = [
-            'Dr. Sri Wahyuni, M.Pd',
-            'Ahmad Budiman, S.Kom'
+            'Ahmad Budiman, S.Kom',
+            'Dr. Sri Wahyuni, M.Pd'
         ];
 
         $jabatan = [
-            'Guru Bahasa Indonesia',
-            'Guru Teknologi Informasi'
+            'Guru Teknologi Informasi',
+            'Guru Matematika'
         ];
 
         $nip = [
@@ -37,17 +37,14 @@ class AnggotaNonSiswaFactory extends Factory
         $index = (self::$noAnggota - 1) % 2;
 
         $tanggalLahir = $this->faker->dateTimeBetween('-95 years', '-20 years');
-        $tempatLahir = $this->faker->randomElement([
-            'Tepal', 'Sumbawa', 'Pusu', 'Bao Desa', 'Batu Rotok', 'Kelungkung', 'Tangkam Pulit', 'Mataram',
-            'Lombok', 'Sumbawa Barat'
-        ]);
 
         return [
             'NoAnggotaN' => 'N' . str_pad(self::$noAnggota++, 4, '0', STR_PAD_LEFT),
             'NIP' => $nip[$index],
             'NamaAnggota' => $namaGuru[$index],
             'Jabatan' => $jabatan[$index],
-            'TTL' => $tempatLahir . ', ' . $tanggalLahir->format('d-m-Y'),
+            'JenisKelamin' => $index % 2 == 0 ? 'L' : 'P', 
+            'TanggalLahir' => $tanggalLahir->format('d-m-Y'),
             'Alamat' => $this->faker->streetAddress() . ', ' . $this->faker->city(),
             'KodePos' => $this->faker->numerify('#####'), 
             'NoTelpHp' => '08' . $this->faker->numerify('##########'),

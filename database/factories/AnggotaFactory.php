@@ -37,17 +37,13 @@ class AnggotaFactory extends Factory
 
         
         $tanggalLahir = $this->faker->dateTimeBetween('-16 years', '-11 years');
-        $tempatLahir = $this->faker->randomElement([
-            'Tepal', 'Sumbawa', 'Pusu', 'Bao Desa', 'Batu Rotok', 'Kelungkung', 'Tangkam Pulit', 'Mataram',
-            'Lombok', 'Sumbawa Barat'
-        ]);
 
         return [
             'NoAnggotaM' => 'M' . str_pad(self::$noAnggota++, 4, '0', STR_PAD_LEFT),
             'NIS' => $this->faker->unique()->numerify('20240###'), 
             'NamaAnggota' => $namaSiswa[$index],
-            'TTL' => $tempatLahir . ', ' . $tanggalLahir->format('d-m-Y'),
-            'Jenis_Kelamin' => $index % 2 == 0 ? 'L' : 'P', 
+            'TanggalLahir' => $tanggalLahir->format('d-m-Y'),
+            'JenisKelamin' => $index % 2 == 0 ? 'L' : 'P', 
             'Alamat' => $this->faker->streetAddress() . ', ' . $this->faker->city(),
             'Kelas' => $this->faker->randomElement(['VII', 'VIII', 'IX']) . ' ' . 
                       $this->faker->randomElement(['A', 'B']),
