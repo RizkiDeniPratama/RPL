@@ -57,9 +57,10 @@ class AnggotaNonSiswaController extends Controller
             'NIP' => 'required|string|max:20',
             'NamaAnggota' => 'required|string|max:255',
             'Jabatan' => 'required|string|max:100',
-            'TTL' => 'required|date',
+            'TanggalLahir' => 'required|date',
+            'JenisKelamin' => 'required|in:L,P',
             'Alamat' => 'required|string',
-            'NoTelpHp' => 'required|string|max:15',
+            'NoTelp' => 'required|string|max:15',
         ]);
 
         $anggota_non_siswa->update($request->all());

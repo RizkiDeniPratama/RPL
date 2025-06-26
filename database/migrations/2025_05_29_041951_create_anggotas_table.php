@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('JenisKelamin')->nullable();
             $table->string('TanggalLahir')->nullable();
             $table->string('Alamat')->nullable();
-            $table->string('NoTelpHp')->nullable();
+            $table->string('NoTelp')->nullable();
             $table->timestamps();
         });
     }

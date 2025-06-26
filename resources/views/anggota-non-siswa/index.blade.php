@@ -29,11 +29,10 @@
                                     <th>NIP</th>
                                     <th>Nama</th>
                                     <th>Jabatan</th>
-                                    <th>TTL</th>
+                                    <th>Tanggal Lahir</th>
+                                    <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
-                                    <th>Kode Pos</th>
                                     <th>No Telp</th>
-                                    <th>Tgl Daftar</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -44,11 +43,10 @@
                                     <td>{{ $item->NIP }}</td>
                                     <td>{{ $item->NamaAnggota }}</td>
                                     <td>{{ $item->Jabatan }}</td>
-                                    <td>{{ optional($item->TTL)->format('d/m/Y') }}</td>
+                                    <td>{{ optional($item->TanggalLahir)->format('d/m/Y') }}</td>
+                                    <td>{{ $item->JenisKelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                     <td>{{ $item->Alamat }}</td>
-                                    <td>{{ $item->KodePos }}</td>
-                                    <td>{{ $item->NoTelpHp }}</td>
-                                    <td>{{ optional($item->TglDaftar)->format('d/m/Y') }}</td>
+                                    <td>{{ $item->NoTelp }}</td>
                                     <td class="text-center">
                                         <div class="btn-group gap-1" role="group">
                                             <a href="{{ route('anggota-non-siswa.show', ['anggota_non_siswa' => $item->NoAnggotaN]) }}" class="btn btn-info btn-sm" title="Detail"><i class="bx bx-show"></i></a>

@@ -22,7 +22,7 @@ class AnggotaNonSiswa extends Model
         'JenisKelamin',
         'TanggalLahir',
         'Alamat',
-        'NoTelpHp',
+        'NoTelp',
     ];
 
     public function peminjaman_Non_Siswa()

@@ -25,7 +25,7 @@ class AnggotaController extends Controller
             'NIS' => 'required|string|max:255|unique:anggota',
             'NamaAnggota' => 'required|string|max:255',
             'TanggalLahir' => 'required|date',
-            'Jenis_Kelamin' => 'required|in:L,P',
+            'JenisKelamin' => 'required|in:L,P',
             'NoTelp' => 'nullable|string|max:15',
             'Alamat' => 'required|string',
             'Kelas' => 'required|string|max:10',

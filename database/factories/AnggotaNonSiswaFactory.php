@@ -46,7 +46,7 @@ class AnggotaNonSiswaFactory extends Factory
             'JenisKelamin' => $index % 2 == 0 ? 'L' : 'P', 
             'TanggalLahir' => $tanggalLahir->format('d-m-Y'),
             'Alamat' => $this->faker->streetAddress() . ', ' . $this->faker->city(),
-            'NoTelpHp' => '08' . $this->faker->numerify('##########'),
+            'NoTelp' => '08' . $this->faker->numerify('##########'),
         ];
     }
 }
