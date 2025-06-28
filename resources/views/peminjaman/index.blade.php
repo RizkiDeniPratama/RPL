@@ -39,7 +39,7 @@
                                     <th>Nama Anggota</th>
                                     <th>Tanggal Pinjam</th>
                                     <th>Tanggal Jatuh Tempo</th>
-                                    <th>Tanggal Kembali</th>
+                                    <th>Kode Petugas</th>
                                     <th>Status</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -52,7 +52,8 @@
                                     <td>{{ $pinjam->anggota->NamaAnggota }}</td>
                                     <td>{{ $pinjam->TglPinjam }}</td>
                                     <td>{{ $pinjam->TglJatuhTempo }}</td>
-                                    <td>{{ optional($pinjam->pengembalian)->TglKembali ?? '-' }}</td>
+                                    {{-- <td>{{ optional($pinjam->pengembalian)->TglKembali ?? '-' }}</td> --}}
+                                    <td>{{ $pinjam->KodePetugas }}</td>
                                     <td>
                                         @if(optional($pinjam->pengembalian) && optional($pinjam->pengembalian)->TglKembali)
                                             <span class="badge bg-success">Dikembalikan</span>

@@ -26,15 +26,12 @@ class AnggotaNonSiswaController extends Controller
             'NIP' => 'required|string|max:20',
             'NamaAnggota' => 'required|string|max:255',
             'Jabatan' => 'required|string|max:100',
-            'TTL' => 'required|date',
+            'TanggalLahir' => 'required|date',
             'Alamat' => 'required|string',
-            'NoTelpHp' => 'required|string|max:15',
+            'NoTelp' => 'required|string|max:15',
         ]);
 
-        $data = $request->all();
-        $data['TglDaftar'] = Carbon::now();
-
-        AnggotaNonSiswa::create($data);
+        AnggotaNonSiswa::create($request->all());
 
         return redirect()->route('anggota-non-siswa.index')
             ->with('success', 'Anggota non siswa berhasil ditambahkan.');

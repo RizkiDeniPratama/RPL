@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label text-muted">Tanggal Lahir</label>
-                                        <p class="form-control-static fw-semibold">{{ $anggotaNonSiswa->TTL->format('d/m/Y') }}</p>
+                                        <p class="form-control-static fw-semibold">{{ optional($anggotaNonSiswa->TanggalLahir)->format('d/m/Y') ?: 'Data Tanggal Lahir Tidak Ada' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -51,16 +51,12 @@
                                         <p class="form-control-static fw-semibold">{{ $anggotaNonSiswa->Alamat }}</p>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label text-muted">Kode Pos</label>
-                                        <p class="form-control-static fw-semibold">{{ $anggotaNonSiswa->KodePos }}</p>
+                                        <label class="form-label text-muted">Jenis Kelamin</label>
+                                        <p class="form-control-static fw-semibold">{{ $anggotaNonSiswa->JenisKelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</p>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label text-muted">No Telp/HP</label>
-                                        <p class="form-control-static fw-semibold">{{ $anggotaNonSiswa->NoTelpHp }}</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label text-muted">Tanggal Daftar</label>
-                                        <p class="form-control-static fw-semibold">{{ $anggotaNonSiswa->TglDaftar->format('d/m/Y') }}</p>
+                                        <label class="form-label text-muted">No Telp</label>
+                                        <p class="form-control-static fw-semibold">{{ $anggotaNonSiswa->NoTelp }}</p>
                                     </div>
                                 </div>
                             </div>

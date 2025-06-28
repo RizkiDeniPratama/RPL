@@ -26,11 +26,11 @@
                             <thead>
                                 <tr>
                                     <th>No Anggota</th>
-                                    <th>NIS</th>
+                                    {{-- <th>NIS</th> --}}
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Kelas</th>
-                                    <th>No Telp</th>
+                                    <th>No Telp Ortu</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -38,11 +38,11 @@
                                 @foreach($anggota as $item)
                                 <tr>
                                     <td>{{ $item->NoAnggotaM }}</td>
-                                    <td>{{ $item->NIS }}</td>
+                                    {{-- <td>{{ $item->NIS }}</td> --}}
                                     <td>{{ $item->NamaAnggota }}</td>
                                     <td>{{ $item->Jenis_Kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                     <td>{{ $item->Kelas }}</td>
-                                    <td>{{ $item->NoTelp }}</td>
+                                    <td>{{ $item->NoTelpOrtu }}</td>
                                     <td>
                                         <div class="btn-group gap-1" role="group">
                                             <a href="{{ route('anggota.show', $item) }}" class="btn btn-info btn-sm" title="Detail"> <i class="bx bx-show"></i></a>

@@ -41,6 +41,10 @@ class AnggotaNonSiswa extends Model
         );
     }
 
+    protected $casts = [
+        'TanggalLahir' => 'date'
+    ];
+
     public function getRouteKeyName()
     {
         return 'NoAnggotaN';

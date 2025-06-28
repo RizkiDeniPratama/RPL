@@ -43,7 +43,7 @@
                                     <td>{{ $item->NIP }}</td>
                                     <td>{{ $item->NamaAnggota }}</td>
                                     <td>{{ $item->Jabatan }}</td>
-                                    <td>{{ optional($item->TanggalLahir)->format('d/m/Y') }}</td>
+                                    <td>{{ optional($item->TanggalLahir)->format('d/m/y') }}</td>
                                     <td>{{ $item->JenisKelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                     <td>{{ $item->Alamat }}</td>
                                     <td>{{ $item->NoTelp }}</td>

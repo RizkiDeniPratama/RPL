@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card mb-4">
-                                <h5 class="card-header">Informasi Pribadi</h5>
+                                <h5 class="card-header">Informasi Pribadi Siswa</h5>
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label class="form-label text-muted">No Anggota</label>
@@ -32,14 +32,14 @@
                                         <p class="form-control-static fw-semibold">{{ $anggota->NamaAnggota }}</p>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label text-muted">Kelas</label>
-                                        <p class="form-control-static fw-semibold">{{ $anggota->Kelas }}</p>
-                                    </div>
-                                    <div class="mb-3">
                                         <label class="form-label text-muted">Tanggal Lahir</label>
                                         <p class="form-control-static fw-semibold">
-                                            {{ $anggota->TTL ? \Illuminate\Support\Carbon::parse($anggota->TTL)->format('d/m/Y') : '' }}
+                                            {{ optional($anggota->TanggalLahir)->format('d/m/Y') ?: 'Data Tanggal Lahir Tidak Ada' }}
                                         </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label text-muted">Kelas</label>
+                                        <p class="form-control-static fw-semibold">{{ $anggota->Kelas }}</p>
                                     </div>
                                 </div>
                             </div>

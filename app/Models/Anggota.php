@@ -30,6 +30,10 @@ class Anggota extends Model
         return $this->hasMany(PeminjamanSiswa::class, 'NoAnggotaM', 'NoAnggotaM');
     }
 
+    protected $casts = [
+        'TanggalLahir' => 'date'
+    ];
+
     public function pengembalian_siswa()
     {
         return $this->hasManyThrough(
