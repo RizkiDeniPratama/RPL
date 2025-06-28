@@ -39,7 +39,7 @@ class AnggotaNonSiswaFactory extends Factory
         $tanggalLahir = $this->faker->dateTimeBetween('-95 years', '-20 years');
 
         return [
-            'NoAnggotaN' => 'N' . str_pad(self::$noAnggota++, 4, '0', STR_PAD_LEFT),
+            'NoAnggotaN' => 'N' . str_pad(self::$noAnggota++, 3, '0', STR_PAD_LEFT),
             'NIP' => $nip[$index],
             'NamaAnggota' => $namaGuru[$index],
             'Jabatan' => $jabatan[$index],

@@ -10,8 +10,8 @@ class BukuSeeder extends Seeder
     {
         $dataBuku = [
         [
-            'KodeBuku' => 'B0001',
-            'NoUDC' => 'UDC510',
+            'KodeBuku' => 'B001',
+            'NoUDC' => '510',
             'Judul' => 'Matematika Kelas VII',
             'Penerbit' => 'Erlangga',
             'Pengarang' => 'Sutrisno',
@@ -21,8 +21,8 @@ class BukuSeeder extends Seeder
             'Stok' => 10,
         ],
         [
-            'KodeBuku' => 'B0002',
-            'NoUDC' => 'UDC500',
+            'KodeBuku' => 'B002',
+            'NoUDC' => '500',
             'Judul' => 'IPA Terpadu Kelas VIII',
             'Penerbit' => 'Yudhistira',
             'Pengarang' => 'Rina Lestari',
@@ -32,8 +32,8 @@ class BukuSeeder extends Seeder
             'Stok' => 12,
         ],
         [
-            'KodeBuku' => 'B0003',
-            'NoUDC' => 'UDC300',
+            'KodeBuku' => 'B003',
+            'NoUDC' => '300',
             'Judul' => 'IPS Kelas IX',
             'Penerbit' => 'Intan Pariwara',
             'Pengarang' => 'Slamet Widodo',
@@ -43,8 +43,8 @@ class BukuSeeder extends Seeder
             'Stok' => 11,
         ],
         [
-            'KodeBuku' => 'B0004',
-            'NoUDC' => 'UDC800',
+            'KodeBuku' => 'B004',
+            'NoUDC' => '800',
             'Judul' => 'Bahasa Indonesia Kelas VII',
             'Penerbit' => 'Balai Pustaka',
             'Pengarang' => 'Rudi Hartanto',
@@ -54,8 +54,8 @@ class BukuSeeder extends Seeder
             'Stok' => 9,
         ],
         [
-            'KodeBuku' => 'B0005',
-            'NoUDC' => 'UDC800',
+            'KodeBuku' => 'B005',
+            'NoUDC' => '800',
             'Judul' => 'Bahasa Inggris Kelas VIII',
             'Penerbit' => 'CV Andi',
             'Pengarang' => 'John Hartanto',
@@ -65,8 +65,8 @@ class BukuSeeder extends Seeder
             'Stok' => 10,
         ],
         [
-            'KodeBuku' => 'B0006',
-            'NoUDC' => 'UDC700',
+            'KodeBuku' => 'B006',
+            'NoUDC' => '700',
             'Judul' => 'Seni Budaya Kelas IX',
             'Penerbit' => 'Tiga Serangkai',
             'Pengarang' => 'Dewi Artina',
@@ -76,8 +76,8 @@ class BukuSeeder extends Seeder
             'Stok' => 7,
         ],
         [
-            'KodeBuku' => 'B0007',
-            'NoUDC' => 'UDC600',
+            'KodeBuku' => 'B007',
+            'NoUDC' => '600',
             'Judul' => 'Prakarya dan Kewirausahaan',
             'Penerbit' => 'Gramedia',
             'Pengarang' => 'Rina Kurniawati',
@@ -87,8 +87,8 @@ class BukuSeeder extends Seeder
             'Stok' => 8,
         ],
         [
-            'KodeBuku' => 'B0008',
-            'NoUDC' => 'UDC200',
+            'KodeBuku' => 'B008',
+            'NoUDC' => '200',
             'Judul' => 'Pendidikan Agama Islam Kelas VIII',
             'Penerbit' => 'Erlangga',
             'Pengarang' => 'Ahmad Nur',
@@ -98,8 +98,8 @@ class BukuSeeder extends Seeder
             'Stok' => 10,
         ],
         [
-            'KodeBuku' => 'B0009',
-            'NoUDC' => 'UDC100',
+            'KodeBuku' => 'B009',
+            'NoUDC' => '100',
             'Judul' => 'Pendidikan Karakter',
             'Penerbit' => 'Bumi Aksara',
             'Pengarang' => 'Dwi Santosa',
@@ -109,8 +109,8 @@ class BukuSeeder extends Seeder
             'Stok' => 6,
         ],
         [
-            'KodeBuku' => 'B0010',
-            'NoUDC' => 'UDC370',
+            'KodeBuku' => 'B010',
+            'NoUDC' => '370',
             'Judul' => 'Metode Belajar Efektif',
             'Penerbit' => 'Yrama Widya',
             'Pengarang' => 'Dian Prasetyo',
