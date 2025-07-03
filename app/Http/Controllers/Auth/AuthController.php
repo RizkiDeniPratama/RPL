@@ -24,8 +24,8 @@ class AuthController extends Controller
         }
 
         $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
+            'username' => 'required|string',
+            'password' => 'required|string'
         ], [
             'username.required' => 'Username wajib diisi',
             'password.required' => 'Password wajib diisi'
