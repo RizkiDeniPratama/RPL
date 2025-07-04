@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\KodeGenerator;
 
 class PetugasController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    protected function generateKodePetugas (){
+        return KodeGenerator::generate(Petugas::class, 'KodePetugas', 'PTG', 2);
+    }
+
     public function index()
     {
         $petugas = Petugas::latest()->paginate(10);
@@ -29,8 +34,10 @@ class PetugasController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('petugas.create');
+    {   
+        // $kodePetugas = KodeGenerator::generate(Petugas::class, 'KodePetugas', 'PTG', 2);
+        $kodePetugas = $this->generateKodePetugas();
+        return view('petugas.create', compact("kodePetugas"));
     }
 
     /**
@@ -42,11 +49,13 @@ class PetugasController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             // Validasi untuk menyimpan petugas
             'Nama' => 'required',
-            'Username' => 'required',
+            'Username' => 'required|unique:petugas,Username',
             'Password' => 'required',
             'Role' => 'required',
         ]);
+        $kodePetugas = $this->generateKodePetugas();
         $data = $request->all();
+        $data['KodePetugas'] = $kodePetugas;
         $data['Password'] = Hash::make($request->Password);
         if ($request->hasFile('foto')) {
             $fotoPath = $request->file('foto')->store('petugas', 'public');

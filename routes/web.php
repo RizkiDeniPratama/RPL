@@ -68,9 +68,5 @@ Route::middleware(['auth'])->group(function () {
         // Laporan Keterlambatan
         Route::get('keterlambatan', [LaporanController::class, 'keterlambatan'])->name('keterlambatan.index');
         Route::get('keterlambatan/cetak', [LaporanController::class, 'cetakKeterlambatan'])->name('keterlambatan.cetak');
-
-        // Laporan Buku Populer
-        Route::get('buku-populer', [LaporanController::class, 'bukuPopuler'])->name('buku-populer.index');
-        Route::get('buku-populer/cetak', [LaporanController::class, 'cetakBukuPopuler'])->name('buku-populer.cetak');
     });
 });
