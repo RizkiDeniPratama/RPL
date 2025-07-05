@@ -41,27 +41,6 @@
                                     <th>Batas Kembali</th>
                                     <td>{{ $peminjaman->TglJatuhTempo }}</td>
                                 </tr>
-                                <tr>
-                                    <th>Status</th>
-                                    <td>
-                                        @php
-                                            $today = \Carbon\Carbon::now();
-                                            $dueDate = \Carbon\Carbon::parse($peminjaman->TglJatuhTempo);
-                                            $isLate = $today->gt($dueDate);
-                                        @endphp
-                                        @if($isLate)
-                                            <span class="badge bg-danger">Terlambat ({{ $today->diffInDays($dueDate) }} hari)</span>
-                                        @else
-                                            <span class="badge bg-warning">Dipinjam</span>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @if($isLate)
-                                <tr>
-                                    <th>Denda</th>
-                                    <td>Rp {{ number_format($totalDenda, 0, ',', '.') }}</td>
-                                </tr>
-                                @endif
                             </table>
                         </div>
                     </div>

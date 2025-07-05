@@ -87,7 +87,7 @@
                                     <td>
                                         @if(optional($pinjam->pengembalian) && optional($pinjam->pengembalian)->TglKembali)
                                             <span class="badge bg-success">Dikembalikan</span>
-                                        @elseif($pinjam->TglJatuhTempo < now() && !optional($pinjam->pengembalian)->TglKembali)
+                                        @elseif(\Carbon\Carbon::parse($pinjam->TglJatuhTempo)->toDateString() < now()->toDateString() && !optional($pinjam->pengembalian)->TglKembali)
                                             <span class="badge bg-danger">Terlambat</span>
                                         @else
                                             <span class="badge bg-warning">Pinjam</span>
