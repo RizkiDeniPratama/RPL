@@ -22,6 +22,10 @@
                         <div class="col-md-6">
                             <table class="table table-borderless">
                                 <tr>
+                                    <th width="200">No Pengembalian</th>
+                                    <td>{{ isset($pengembalian) ? ($pengembalian instanceof \App\Models\PengembalianSiswa ? $pengembalian->NoPinjamM : $pengembalian->NoPinjamN) : '-' }}</td>
+                                </tr>
+                                <tr>
                                     <th width="200">No Peminjaman</th>
                                     <td>{{ isset($peminjaman) ? ($peminjaman instanceof \App\Models\PeminjamanSiswa ? $peminjaman->NoPinjamM : $peminjaman->NoPinjamN) : '-' }}</td>
                                 </tr>
@@ -65,7 +69,7 @@
                                     <tr>
                                         <td>{{ $detail->KodeBuku }}</td>
                                         <td>{{ $detail->buku->Judul }}</td>
-                                        <td>{{ $detail->JumlahBuku }}</td>
+                                        <td>{{ $detail->Jumlah }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

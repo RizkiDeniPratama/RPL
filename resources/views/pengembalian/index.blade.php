@@ -56,7 +56,7 @@
                                     @php
                                         $jatuhTempo = Carbon\Carbon::parse($kembali->peminjaman->TglJatuhTempo);
                                         $tglKembali = Carbon\Carbon::parse($kembali->TglKembali);
-                                        echo $hariTerlambat = $tglKembali->gt($jatuhTempo) ? $tglKembali->diffInDays($jatuhTempo) : 0;
+                                        $hariTerlambat = $tglKembali->gt($jatuhTempo) ? $tglKembali->diffInDays($jatuhTempo) : 0;
                                         $dendaPerHari = 1000;
                                         $dendaHitung = $hariTerlambat * $dendaPerHari;
                                     @endphp
