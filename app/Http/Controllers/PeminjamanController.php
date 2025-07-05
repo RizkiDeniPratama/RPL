@@ -23,10 +23,10 @@ class PeminjamanController extends Controller
         $currentPage = request()->get('page', 1);
 
         // Get both student and non-student loans
-        $peminjamanSiswa = PeminjamanSiswa::with(['anggota', 'detailPeminjaman.buku', 'petugas'])
+        $peminjamanSiswa = PeminjamanSiswa::with(['anggota', 'detailPeminjaman.buku', 'petugas', 'pengembalian'])
             ->latest('TglPinjam');
         
-        $peminjamanNonSiswa = PeminjamanNonSiswa::with(['anggota', 'detailPeminjaman.buku', 'petugas'])
+        $peminjamanNonSiswa = PeminjamanNonSiswa::with(['anggota', 'detailPeminjaman.buku', 'petugas', 'pengembalian'])
             ->latest('TglPinjam');
 
         if ($request->type === 'siswa') {
@@ -153,8 +153,7 @@ class PeminjamanController extends Controller
             DB::rollback();
             return back()->with('error', $e->getMessage());
         }
-    }    public function show($nomorPinjam)
-    {
+    }    public function show($nomorPinjam)    {
         // Find either student or non-student loan based on the loan number format
         if (strpos($nomorPinjam, 'PJM-S') === 0) {
             $peminjaman = PeminjamanSiswa::with(['anggota', 'detailPeminjaman.buku', 'petugas'])
@@ -177,16 +176,6 @@ class PeminjamanController extends Controller
         }
         return view('peminjaman.show', compact('peminjaman'));
     }   
-
-    // public function edit($id)
-    // {
-    // if (strpos($id, 'PJM-S') === 0) {
-    //     $peminjaman = PeminjamanSiswa::where('NoPinjamM', $id)->firstOrFail();
-    // } else {
-    //     $peminjaman = PeminjamanNonSiswa::where('NoPinjamN', $id)->firstOrFail();
-    // }
-    // return view('peminjaman.edit', compact('peminjaman'));
-    // }
     
     public function edit($nomorPinjam)
     {
@@ -237,23 +226,40 @@ class PeminjamanController extends Controller
     }    
     
     public function destroy($nomorPinjam)
-    {
+    {   
         // Find either student or non-student loan based on the loan number format
-        if (strpos($nomorPinjam, 'PJM-S') === 0) {
-            $peminjaman = PeminjamanSiswa::with('detailPeminjaman.buku')
-                ->where('NoPinjamM', $nomorPinjam)
-                ->firstOrFail();
-            $isSiswa = true;
-        } else {
-            $peminjaman = PeminjamanNonSiswa::with('detailPeminjaman.buku')
-                ->where('NoPinjamN', $nomorPinjam)
-                ->firstOrFail();
-            $isSiswa = false;
-        }
+        // if (strpos($nomorPinjam, 'PJM-S') === 0) {
+        //     $peminjaman = PeminjamanSiswa::with('detailPeminjaman.buku')
+        //         ->where('NoPinjamM', $nomorPinjam)
+        //         ->firstOrFail();
+        //     $isSiswa = true;
+        // } else {
+        //     $peminjaman = PeminjamanNonSiswa::with('detailPeminjaman.buku')
+        //         ->where('NoPinjamN', $nomorPinjam)
+        //         ->firstOrFail();
+        //     $isSiswa = false;
+        // }
 
-        if ($peminjaman->pengembalian) {
+        if (strpos($nomorPinjam, 'PJM-S') === 0) {
+        $peminjaman = PeminjamanSiswa::with(['detailPeminjaman.buku', 'pengembalian'])
+            ->where('NoPinjamM', $nomorPinjam)
+            ->firstOrFail();
+        $isSiswa = true;
+        } else {
+        $peminjaman = PeminjamanNonSiswa::with(['detailPeminjaman.buku', 'pengembalian'])
+            ->where('NoPinjamN', $nomorPinjam)
+            ->firstOrFail();
+        $isSiswa = false;
+}
+
+
+        // if ($peminjaman->pengembalian) {
+        //     return back()->with('error', 'Peminjaman yang sudah dikembalikan tidak dapat dihapus');
+        // }
+        if (optional($peminjaman->pengembalian)->TglKembali) {
             return back()->with('error', 'Peminjaman yang sudah dikembalikan tidak dapat dihapus');
         }
+
 
         DB::beginTransaction();
         try {
@@ -273,6 +279,54 @@ class PeminjamanController extends Controller
             return back()->with('error', 'Gagal menghapus peminjaman');
         }
     }   
+
+//     public function destroy($nomorPinjam)
+// {   
+//     // Find either student or non-student loan based on the loan number format
+//     if (strpos($nomorPinjam, 'PJM-S') === 0) {
+//         $peminjaman = PeminjamanSiswa::with(['detailPeminjaman', 'pengembalian'])
+//             ->where('NoPinjamM', $nomorPinjam)
+//             ->firstOrFail();
+//         $isSiswa = true;
+//     } else {
+//         $peminjaman = PeminjamanNonSiswa::with(['detailPeminjaman', 'pengembalian'])
+//             ->where('NoPinjamN', $nomorPinjam)
+//             ->firstOrFail();
+//         $isSiswa = false;
+//     }
+
+//     // Check if already returned
+//     if (optional($peminjaman->pengembalian)->TglKembali) {
+//         return back()->with('error', 'Peminjaman yang sudah dikembalikan tidak dapat dihapus');
+//     }
+
+//     DB::beginTransaction();
+//     try {
+//         // Restore book stock first
+//         foreach ($peminjaman->detailPeminjaman as $detail) {
+//             $buku = Buku::where('KodeBuku', $detail->KodeBuku)->firstOrFail();
+//             $buku->update(['Stok' => $buku->Stok + $detail->Jumlah]);
+//         }
+
+//         // Delete detail peminjaman first (child records)
+//         if ($isSiswa) {
+//             DetailPeminjamanSiswa::where('NoPinjamM', $nomorPinjam)->delete();
+//         } else {
+//             DetailPeminjamanNonSiswa::where('NoPinjamN', $nomorPinjam)->delete();
+//         }
+
+//         // Then delete the main peminjaman record (parent record)
+//         $peminjaman->delete();
+
+//         DB::commit();
+
+//         return redirect()->route('peminjaman.index')
+//             ->with('success', 'Peminjaman berhasil dihapus');
+//     } catch (\Exception $e) {
+//         DB::rollback();
+//         return back()->with('error', 'Gagal menghapus peminjaman: ' . $e->getMessage());
+//     }
+// }
     
     public function hitungDenda($nomorPinjam)
     {

@@ -12,10 +12,40 @@
 
                 <div class="card-body">
                     @if(session('success'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
                         </div>
                     @endif
+                
+                    @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    </div>
+                    @endif
+
+                    {{-- @if(session('success')) 
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: "{{ session('success') }}",
+        timer: 3000,
+        showConfirmButton: false
+    });
+</script>
+@endif
+
+@if(session('error'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: "{{ session('error') }}",
+        timer: 4000,
+        showConfirmButton: false
+    });
+</script>
+@endif --}}
 
                     <div class="mb-3">
                         <label for="filterType" class="form-label">Filter Tipe Anggota:</label>
@@ -62,14 +92,16 @@
                                         @else
                                             <span class="badge bg-warning">Pinjam</span>
                                         @endif
+                                        
                                     </td>                                   
                                     <td class="text-center">
                                         <div class="btn-group gap-2" role="group">
                                             <a href="{{ $pinjam instanceof \App\Models\PeminjamanSiswa 
                                                         ? route('peminjaman.show', $pinjam->NoPinjamM) 
-                                                        : route('peminjaman.show', $pinjam->NoPinjamN) }}"
+                                                        : route('peminjaman.show', $pinjam->NoPinjamN)}}"
                                                class="btn btn-info btn-sm">Detail</a>
-                                            @if($pinjam->status === 'dipinjam')
+                                            @if(in_array($pinjam->status, ['dipinjam', 'terlambat']))
+                                            {{-- {{ dd($pinjam->status) }} --}}
                                                 <a href="{{ $pinjam instanceof \App\Models\PeminjamanSiswa 
                                                             ? route('pengembalian.create', ['peminjaman_id' => $pinjam->NoPinjamM]) 
                                                             : route('pengembalian.create', ['peminjaman_id' => $pinjam->NoPinjamN]) }}"
@@ -126,6 +158,16 @@ document.getElementById('searchTable').addEventListener('keyup', function() {
         row.style.display = text.indexOf(value) > -1 ? '' : 'none';
     });
 });
+// Hilangkan alert setelah 5 detik (5000 ms)
+    setTimeout(function () {
+        let alert = document.querySelector('.alert');
+        if (alert) {
+            // Tambahkan efek fade out manual
+            alert.classList.remove('show');
+            alert.classList.add('fade');
+            setTimeout(() => alert.remove(), 500); // Hapus dari DOM setelah fade out
+        }
+    }, 5000);
 </script>
 @endpush
 @endsection

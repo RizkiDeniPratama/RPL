@@ -71,6 +71,7 @@ class PengembalianController extends Controller
      */
     public function create(Request $request): View|RedirectResponse
     {
+        
         if (!$request->has('peminjaman_id')) {
             return redirect()->route('peminjaman.index')
                 ->with('error', 'ID Peminjaman tidak ditemukan');
@@ -87,7 +88,7 @@ class PengembalianController extends Controller
                 ->firstOrFail();
         }
 
-        if ($peminjaman->status !== 'dipinjam') {
+        if (!in_array($peminjaman->status, ['dipinjam', 'terlambat'])) {
             return redirect()->route('peminjaman.show', $request->peminjaman_id)
                 ->with('error', 'Peminjaman ini sudah dikembalikan');
         }

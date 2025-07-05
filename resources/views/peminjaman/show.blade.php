@@ -96,7 +96,7 @@
                                     <th>Judul Buku</th>
                                     <th>Jumlah Buku</th>
                                     @if (isset($peminjaman) && $peminjaman->status === 'dipinjam')
-                                    @dd($peminjaman)
+                                    {{-- @dd($peminjaman) --}}
                                         <th class="text-center">Aksi</th>
                                     @endif
                                 </tr>
@@ -112,7 +112,7 @@
                                                 <td class="text-center">
                                                     <form
                                                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
-                                                        action="{{ route('detail-peminjaman.destroy', ['no_pinjam' => $peminjaman instanceof \App\Models\PeminjamanSiswa ? $detail->NoPinjamM : $detail->NoPinjamN, 'kode_buku' => $detail->KodeBuku]) }}"
+                                                        action="{{ route('detail-peminjaman.destroy.custom', ['no_pinjam' => $peminjaman instanceof \App\Models\PeminjamanSiswa ? $detail->NoPinjamM : $detail->NoPinjamN, 'kode_buku' => $detail->KodeBuku]) }}"
                                                         method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
@@ -161,6 +161,7 @@
             @endphp
             <input type="hidden" name="Denda" value="{{ $totalDenda }}">
             
+            @if (isset($peminjaman) && $peminjaman->status === 'dipinjam')    
             <button type="submit" class="btn btn-success">
                 Proses Pengembalian
                 @if($hariTerlambat > 0)
@@ -169,6 +170,7 @@
                     </small>
                 @endif
             </button>
+            @endif
         </form>
     </div>
                     @endif

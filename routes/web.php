@@ -54,7 +54,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('peminjaman', PeminjamanController::class);
     Route::get('peminjaman/hitung-denda/{id}', [PeminjamanController::class, 'hitungDenda'])->name('peminjaman.hitung-denda');
     Route::resource('detail-peminjaman', DetailPeminjamanController::class);
-    
+    Route::delete('detail-peminjaman/{no_pinjam}/{kode_buku}', [DetailPeminjamanController::class, 'destroy'])->name('detail-peminjaman.destroy.custom');
+
     // Unified Pengembalian routes
     Route::resource('pengembalian', PengembalianController::class);
     Route::get('pengembalian/{nomorKembali}/print', [PengembalianController::class, 'print'])->name('pengembalian.print');
