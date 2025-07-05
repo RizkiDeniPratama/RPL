@@ -87,48 +87,111 @@ class PetugasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
-    {
-        $petugas = Petugas::find(Auth::id());
-        $request->validate([
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'Nama' => 'required|string|max:255',
-            'username' => "required|string|max:255|unique:petugas,Username,{$petugas->KodePetugas},KodePetugas",
-            'Role' => 'required|string',
-            'Password' => 'required', // password lama untuk konfirmasi
-            'password' => 'nullable|string|min:4|confirmed', // password baru opsional
-        ], [
-            'Nama.required' => 'Nama wajib diisi',
-            'username.required' => 'Username wajib diisi',
-            'username.unique' => 'Username sudah digunakan',
-            'Role.required' => 'Role wajib diisi',
-            'Password.required' => 'Password lama wajib diisi',
-            'password.min' => 'Password minimal 4 karakter',
-            'password.confirmed' => 'Konfirmasi password tidak sesuai',
-        ]);
 
-        // Cek password lama
-        if (!Hash::check($request->Password, $petugas->Password)) {
-            return back()->withErrors(['Password' => 'Password lama salah']);
-        }
+    //  Update data petugas khusus admin
+    public function update(Request $request, $id)
+{
+    $petugas = Petugas::findOrFail($id);
+    
+    $request->validate([
+        'Nama' => 'required|string|max:255',
+        'Username' => "required|string|max:255|unique:petugas,Username,{$id},KodePetugas",
+        'Role' => 'required|string',
+        'password' => 'nullable|string|min:4|confirmed', // opsional
+    ]);
 
-        $petugas->Nama = $request->Nama;
-        $petugas->Username = $request->username;
-        $petugas->Role = $request->Role;
-        if ($request->filled('password')) {
-            $petugas->Password = Hash::make($request->password);
-        }
-        if ($request->hasFile('foto')) {
-            if ($petugas->foto && Storage::disk('public')->exists($petugas->foto)) {
-                Storage::disk('public')->delete($petugas->foto);
-            }
-            $fotoPath = $request->file('foto')->store('petugas', 'public');
-            $petugas->foto = $fotoPath;
-        }
-        $petugas->save();
+    $petugas->Nama = $request->Nama;
+    $petugas->Username = $request->Username;
+    $petugas->Role = $request->Role;
 
-        return redirect()->route('petugas.profil')->with('success', 'Profile berhasil diperbarui!');
+    if ($request->filled('password')) {
+        $petugas->Password = Hash::make($request->password);
     }
+
+    $petugas->save();
+
+    return redirect()->route('petugas.index')->with('success', 'Petugas berhasil diperbarui.');
+}
+
+    // update untuk profile setiap user
+    public function updateProfile(Request $request)
+{
+    $petugas = Petugas::findOrFail(Auth::id());
+
+    $request->validate([
+        'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'Nama' => 'required|string|max:255',
+        'username' => "required|string|max:255|unique:petugas,Username,{$petugas->KodePetugas},KodePetugas",
+        'Role' => 'required|string',
+        'Password' => 'required',
+        'password' => 'nullable|string|min:4|confirmed',
+    ]);
+
+    if (!Hash::check($request->Password, $petugas->Password)) {
+        return back()->withErrors(['Password' => 'Password lama anda salah']);
+    }
+
+    $petugas->Nama = $request->Nama;
+    $petugas->Username = $request->username;
+
+    if ($request->filled('password')) {
+        $petugas->Password = Hash::make($request->password);
+    }
+
+    if ($request->hasFile('foto')) {
+        if ($petugas->foto && Storage::disk('public')->exists($petugas->foto)) {
+            Storage::disk('public')->delete($petugas->foto);
+        }
+        $fotoPath = $request->file('foto')->store('petugas', 'public');
+        $petugas->foto = $fotoPath;
+    }
+
+    $petugas->save();
+
+    return redirect()->route('petugas.profil')->with('success', 'Profil berhasil diperbarui!');
+}
+
+    // public function update(Request $request)
+    // {
+    //     $petugas = Petugas::find(Auth::id());
+    //     $request->validate([
+    //         'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    //         'Nama' => 'required|string|max:255',
+    //         'username' => "required|string|max:255|unique:petugas,Username,{$petugas->KodePetugas},KodePetugas",
+    //         'Role' => 'required|string',
+    //         'Password' => 'required', // password lama untuk konfirmasi
+    //         'password' => 'nullable|string|min:4|confirmed', // password baru opsional
+    //     ], [
+    //         'Nama.required' => 'Nama wajib diisi',
+    //         'username.required' => 'Username wajib diisi',
+    //         'username.unique' => 'Username sudah digunakan', 
+    //         'Role.required' => 'Role wajib diisi',
+    //         'Password.required' => 'Password lama wajib diisi',
+    //         'password.min' => 'Password minimal 4 karakter',
+    //         'password.confirmed' => 'Konfirmasi password tidak sesuai',
+    //     ]);
+
+    //     if (!Hash::check($request->Password, $petugas->Password)) {
+    //         return back()->withErrors(['Password' => 'Password lama salah']);
+    //     }
+
+    //     $petugas->Nama = $request->Nama;
+    //     $petugas->Username = $request->username;
+    //     $petugas->Role = $request->Role;
+    //     if ($request->filled('password')) {
+    //         $petugas->Password = Hash::make($request->password);
+    //     }
+    //     if ($request->hasFile('foto')) {
+    //         if ($petugas->foto && Storage::disk('public')->exists($petugas->foto)) {
+    //             Storage::disk('public')->delete($petugas->foto);
+    //         }
+    //         $fotoPath = $request->file('foto')->store('petugas', 'public');
+    //         $petugas->foto = $fotoPath;
+    //     }
+    //     $petugas->save();
+
+    //     return redirect()->route('petugas.profil')->with('success', 'Profile berhasil diperbarui!');
+    // }
 
     
 
