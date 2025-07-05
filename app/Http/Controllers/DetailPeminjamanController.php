@@ -102,13 +102,15 @@ class DetailPeminjamanController extends Controller
                 DetailPeminjamanSiswa::create([
                     'NoPinjamM' => $peminjaman->NoPinjamM,
                     'KodeBuku' => $buku->KodeBuku,
-                    'KodePetugas' => Auth::user()->KodePetugas
+                    'KodePetugas' => Auth::user()->KodePetugas,
+                    'Jumlah' => $request->jumlah
                 ]);
             } else {
                 DetailPeminjamanNonSiswa::create([
                     'NoPinjamN' => $peminjaman->NoPinjamN,
                     'KodeBuku' => $buku->KodeBuku,
-                    'KodePetugas' => Auth::user()->KodePetugas
+                    'KodePetugas' => Auth::user()->KodePetugas,
+                    'Jumlah' => $request->jumlah
                 ]);
             }
 

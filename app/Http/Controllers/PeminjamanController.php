@@ -109,7 +109,8 @@ class PeminjamanController extends Controller
                     DetailPeminjamanSiswa::create([
                         'NoPinjamM' => $peminjaman->NoPinjamM,
                         'KodeBuku' => $kodeBuku,
-                        'KodePetugas' => $kodePetugas
+                        'KodePetugas' => $kodePetugas,
+                        'Jumlah' => $jumlah
                     ]);
 
                     // Update stok

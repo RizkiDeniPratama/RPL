@@ -87,7 +87,7 @@
                         </div>
                     </div>
 
-                    <h6 class="fw-bold">Detail Buku</h6>
+                    <h6 class="fw-bold">Detail Buku Yang Di Pinjam</h6>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead class="table-light">
@@ -107,8 +107,7 @@
                                         <tr>
                                             <td>{{ $detail->KodeBuku }}</td>
                                             <td>{{ $detail->buku->Judul }}</td>
-                                            {{-- <td>{{ $detail->JumlahBuku }}</td> --}}
-                                            <td>{{ $detail->stok }}</td>
+                                            <td>{{ $detail->Jumlah }}</td>
                                             @if ($peminjaman->status === 'dipinjam')
                                                 <td class="text-center">
                                                     <form
