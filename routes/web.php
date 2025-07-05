@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('petugas', PetugasController::class);
     // Profile routes
     Route::get('/petugas-profil', [PetugasController::class, 'index1'])->name('petugas.profil');
-    Route::put('/petugas-profil', [PetugasController::class, 'update'])->name('petugas.profil');
+    Route::put('/petugas-profil', [PetugasController::class, 'updateProfile'])->name('petugas.profil');
 
 
     // Buku routes

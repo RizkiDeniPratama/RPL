@@ -110,11 +110,6 @@
                 <div data-i18n="Late Returns Report">Keterlambatan</div>
               </a>
             </li>
-            <li class="menu-item {{ Request::is('laporan/buku-populer*') ? 'active' : '' }}">
-              <a href="{{ route('laporan.buku-populer.index') }}" class="menu-link">
-                <div data-i18n="Popular Books Report">Buku Terpopuler</div>
-              </a>
-            </li>
           </ul>
         </li>
       </ul>
