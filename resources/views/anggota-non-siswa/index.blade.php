@@ -28,7 +28,7 @@
                                     <th>No Anggota</th>
                                     <th>NIP</th>
                                     <th>Nama</th>
-                                    <th>Jabatan</th>
+                                    <th>Pekerjaan</th>
                                     <th>Tanggal Lahir</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
@@ -42,7 +42,7 @@
                                     <td>{{ $item->NoAnggotaN }}</td>
                                     <td>{{ $item->NIP }}</td>
                                     <td>{{ $item->NamaAnggota }}</td>
-                                    <td>{{ $item->Jabatan }}</td>
+                                    <td>{{ $item->Pekerjaan }}</td>
                                     <td>{{ optional($item->TanggalLahir)->format('d/m/y') }}</td>
                                     <td>{{ $item->JenisKelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                     <td>{{ $item->Alamat }}</td>
