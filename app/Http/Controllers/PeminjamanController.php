@@ -266,7 +266,7 @@ class PeminjamanController extends Controller
             // Restore book stock
             foreach ($peminjaman->detailPeminjaman as $detail) {
                 $buku = Buku::where('KodeBuku', $detail->KodeBuku)->firstOrFail();
-                $buku->update(['Stok' => $buku->Stok + 1]); // Assuming 1 book per detail
+                $buku->update(['Stok' => $buku->Stok + $detail->Jumlah]);
             }
 
             $peminjaman->delete();
