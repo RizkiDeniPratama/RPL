@@ -62,12 +62,24 @@ Route::middleware(['auth'])->group(function () {
 
     // Laporan routes
     Route::prefix('laporan')->name('laporan.')->group(function () {
+        // Laporan Buku
+        Route::get('laporanBuku', [LaporanController::class, 'laporanBuku'])->name('laporanBuku.index');
+        Route::get('laporanBuku/cetak', [LaporanController::class, 'cetakLaporanBuku'])->name('laporanBuku.cetak');
+
+        // Laporan Anggota
+        Route::get('laporanAnggota', [LaporanController::class, 'laporanAnggota'])->name('laporanAnggota.index');
+        Route::get('laporanAnggota/cetak', [LaporanController::class, 'cetakLaporanAnggota'])->name('laporanAnggota.cetak');
+
+        // Laporan Pengembalian
+        Route::get('laporanPengembalian', [LaporanController::class, 'laporanPengembalian'])->name('laporanPengembalian.index');
+        Route::get('laporanPengembalian/cetak', [LaporanController::class, 'cetakLaporanPengembalian'])->name('laporanPengembalian.cetak');
+
+
         // Laporan Peminjaman
         Route::get('peminjaman', [LaporanController::class, 'peminjaman'])->name('peminjaman.index');
         Route::get('peminjaman/cetak', [LaporanController::class, 'cetakPeminjaman'])->name('peminjaman.cetak');
         
-        // Laporan Keterlambatan
-        Route::get('keterlambatan', [LaporanController::class, 'keterlambatan'])->name('keterlambatan.index');
-        Route::get('keterlambatan/cetak', [LaporanController::class, 'cetakKeterlambatan'])->name('keterlambatan.cetak');
+        // Route::get('laporanPengembalian', [LaporanController::class, 'laporanPengembal'])->name('keterlambatan.index');
+        // Route::get('laporanPengembalian/cetak', [LaporanController::class, 'cetakKeterlambatan'])->name('keterlambatan.cetak');
     });
 });

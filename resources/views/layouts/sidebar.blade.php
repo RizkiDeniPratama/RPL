@@ -100,14 +100,24 @@
             <div data-i18n="Reports">Laporan</div>
           </a>
           <ul class="menu-sub">
+            <li class="menu-item {{ Request::is('laporan/buku*') ? 'active' : '' }}">
+              <a href="{{ route('laporan.laporanBuku.index') }}" class="menu-link">
+                <div data-i18n="Late Returns Report">Buku</div>
+              </a>
+            </li>
+            <li class="menu-item {{ Request::is('laporan/anggota*') ? 'active' : '' }}">
+              <a href="{{ route('laporan.laporanAnggota.index') }}" class="menu-link">
+                <div data-i18n="Late Returns Report">Anggota</div>
+              </a>
+            </li>
             <li class="menu-item {{ Request::is('laporan/peminjaman*') ? 'active' : '' }}">
               <a href="{{ route('laporan.peminjaman.index') }}" class="menu-link">
                 <div data-i18n="Borrowing Report">Peminjaman</div>
               </a>
             </li>
-            <li class="menu-item {{ Request::is('laporan/keterlambatan*') ? 'active' : '' }}">
-              <a href="{{ route('laporan.keterlambatan.index') }}" class="menu-link">
-                <div data-i18n="Late Returns Report">Keterlambatan</div>
+            <li class="menu-item {{ Request::is('laporan/pengembalian*') ? 'active' : '' }}">
+              <a href="{{ route('laporan.laporanPengembalian.index') }}" class="menu-link">
+                <div data-i18n="Late Returns Report">Pengembalian & Denda</div>
               </a>
             </li>
           </ul>
