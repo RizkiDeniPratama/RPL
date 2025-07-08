@@ -7,7 +7,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Daftar Anggota Non Siswa</h5>
+                    @if (Auth::user()->Role === 'admin')     
                     <a href="{{ route('anggota-non-siswa.create') }}" class="btn btn-primary">Tambah Anggota</a>
+                    @endif
                 </div>
 
                 <div class="card-body">
@@ -50,12 +52,14 @@
                                     <td class="text-center">
                                         <div class="btn-group gap-1" role="group">
                                             <a href="{{ route('anggota-non-siswa.show', ['anggota_non_siswa' => $item->NoAnggotaN]) }}" class="btn btn-info btn-sm" title="Detail"><i class="bx bx-show"></i></a>
-                                            <a href="{{ route('anggota-non-siswa.edit', ['anggota_non_siswa' => $item->NoAnggotaN]) }}" class="btn btn-warning btn-sm" title="Edit"><i class="bx bx-edit"></i></a>
-                                            <form action="{{ route('anggota-non-siswa.destroy', ['anggota_non_siswa' => $item->NoAnggotaN]) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')"><i class="bx bx-trash"></i></button>
-                                            </form>
+                                               @if (Auth::user()->Role === 'admin')
+                                               <a href="{{ route('anggota-non-siswa.edit', ['anggota_non_siswa' => $item->NoAnggotaN]) }}" class="btn btn-warning btn-sm" title="Edit"><i class="bx bx-edit"></i></a>
+                                               <form action="{{ route('anggota-non-siswa.destroy', ['anggota_non_siswa' => $item->NoAnggotaN]) }}" method="POST" class="d-inline">
+                                                   @csrf
+                                                   @method('DELETE')
+                                                   <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')"><i class="bx bx-trash"></i></button>
+                                               </form>
+                                                @endif
                                         </div>
                                     </td>
                                 </tr>

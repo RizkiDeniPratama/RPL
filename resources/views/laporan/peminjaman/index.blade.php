@@ -48,11 +48,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $no = 1; @endphp
                         @foreach($peminjaman as $index => $pinjam)
                             @foreach($pinjam->detailPeminjaman as $detail)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ optional($pinjam->TglPinjam)->format('d/m/Y') ?? '-' }}</td>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $pinjam->TglPinjam ? \Carbon\Carbon::parse($pinjam->TglPinjam)->format('d/m/Y') : '-' }}</td>
                                     <td>
                                         @if($pinjam instanceof \App\Models\PeminjamanSiswa)
                                             {{ $pinjam->NoPinjamM }}
@@ -60,7 +61,7 @@
                                             {{ $pinjam->NoPinjamN }}
                                         @endif
                                     </td>
-                                    <td>{{ $pinjam->anggota->nama }}</td>
+                                    <td>{{ $pinjam->anggota->NamaAnggota }}</td>
                                     <td>
                                         @if($pinjam instanceof \App\Models\PeminjamanSiswa)
                                             Siswa
@@ -68,9 +69,9 @@
                                             Non-Siswa
                                         @endif
                                     </td>
-                                    <td>{{ $detail->buku->judul }}</td>
-                                    <td>{{ $detail->petugas->nama }}</td>
-                                    <td>{{ optional($pinjam->TglJatuhTempo)->format('d/m/Y') ?? '-' }}</td>
+                                    <td>{{ $detail->buku->Judul }}</td>
+                                    <td>{{ $detail->petugas->Nama }}</td>
+                                    <td>{{ $pinjam->TglJatuhTempo ? \Carbon\Carbon::parse($pinjam->TglJatuhTempo)->format('d/m/Y') : '-' }}</td>
                                     <td>
                                         @if($pinjam->pengembalian)
                                             <span class="badge bg-success">Dikembalikan</span>

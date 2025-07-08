@@ -96,25 +96,32 @@ class LaporanController extends Controller
 
     public function peminjaman(Request $request)
     {
-        $startDate = $request->start_date ? Carbon::parse($request->start_date) : Carbon::now()->startOfMonth();
-        $endDate = $request->end_date ? Carbon::parse($request->end_date) : Carbon::now();
+    $startDate = $request->start_date ? Carbon::parse($request->start_date) : Carbon::now()->startOfMonth();
+    $endDate = $request->end_date ? Carbon::parse($request->end_date) : Carbon::now();
 
-        // Get student loans
-        $peminjamanSiswa = PeminjamanSiswa::with(['anggota', 'detailPeminjaman.buku', 'petugas'])
-            ->whereBetween('TglPinjam', [$startDate, $endDate])
-            ->orderBy('TglPinjam', 'desc')
-            ->get();
+    $peminjamanSiswa = PeminjamanSiswa::with([
+            'anggota', 
+            'petugas',
+            'detailPeminjaman.buku',
+            'detailPeminjaman.petugas'
+        ])
+        ->whereBetween('TglPinjam', [$startDate, $endDate])
+        ->orderBy('TglPinjam', 'desc')
+        ->get();
 
-        // Get non-student loans
-        $peminjamanNonSiswa = PeminjamanNonSiswa::with(['anggota', 'detailPeminjaman.buku', 'petugas'])
-            ->whereBetween('TglPinjam', [$startDate, $endDate])
-            ->orderBy('TglPinjam', 'desc')
-            ->get();
+    $peminjamanNonSiswa = PeminjamanNonSiswa::with([
+            'anggota', 
+            'petugas',
+            'detailPeminjaman.buku',
+            'detailPeminjaman.petugas'
+        ])
+        ->whereBetween('TglPinjam', [$startDate, $endDate])
+        ->orderBy('TglPinjam', 'desc')
+        ->get();
 
-        // Combine the results
-        $peminjaman = $peminjamanSiswa->concat($peminjamanNonSiswa)->sortByDesc('TglPinjam');
+    $peminjaman = $peminjamanSiswa->concat($peminjamanNonSiswa)->sortByDesc('TglPinjam');
 
-        return view('laporan.peminjaman.index', compact('peminjaman', 'startDate', 'endDate'));
+    return view('laporan.peminjaman.index', compact('peminjaman', 'startDate', 'endDate'));
     }
 
     public function cetakPeminjaman(Request $request)

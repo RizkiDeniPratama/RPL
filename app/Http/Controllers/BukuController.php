@@ -74,17 +74,6 @@ class BukuController extends Controller
             'ISBN' => 'nullable|string|unique:buku,ISBN,' . $buku->KodeBuku . ',KodeBuku',
             'Stok' => 'required|integer|min:0',
         ]);
-        $lastBook = Buku::orderBy('KodeBuku', 'desc') ->first();
-
-        if ($lastBook) {
-        $lastNumber = intval(substr($lastBook->KodeBuku, 1));
-        $newNumber = $lastNumber + 1;
-        } else {
-        $newNumber = 1; 
-        }
-
-        $kodeBuku = 'B' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
-        $request->merge(['KodeBuku' => $kodeBuku]);
         
         $buku->update($request->all());
         return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui');

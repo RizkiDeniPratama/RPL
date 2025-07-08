@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Petugas extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'petugas';
     protected $primaryKey = "KodePetugas";
@@ -24,7 +25,10 @@ class Petugas extends Authenticatable
     protected $casts = [
         'Role'=> 'string',
     ];
-
+    protected $hidden = [
+        'Password', 
+        'remember_token',
+    ];
     /**
      * The column name used for authentication username
      */

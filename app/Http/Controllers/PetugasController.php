@@ -24,7 +24,7 @@ class PetugasController extends Controller
         return view('petugas.index', compact('petugas'));
     }
 
-     public function index1()
+     public function profile()
     {
         $petugas = Petugas::find(Auth::id());
         return view('petugas.profile', compact('petugas'));

@@ -48,12 +48,14 @@
 
 
         <!-- Officers -->
+        @if (Auth::user()->Role === 'admin')   
         <li class="menu-item {{ Request::is('petugas*') ? 'active' : '' }}">
           <a href="{{ route('petugas.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-id-card"></i>
             <div data-i18n="Officers">Petugas</div>
           </a>
         </li>
+        @endif
 
         <!-- Members -->
         <li class="menu-item {{ Request::is('anggota*') && !Request::is('anggota-non-siswa*') ? 'active' : '' }}">
@@ -100,16 +102,18 @@
             <div data-i18n="Reports">Laporan</div>
           </a>
           <ul class="menu-sub">
-            <li class="menu-item {{ Request::is('laporan/buku*') ? 'active' : '' }}">
-              <a href="{{ route('laporan.laporanBuku.index') }}" class="menu-link">
-                <div data-i18n="Late Returns Report">Buku</div>
-              </a>
-            </li>
-            <li class="menu-item {{ Request::is('laporan/anggota*') ? 'active' : '' }}">
-              <a href="{{ route('laporan.laporanAnggota.index') }}" class="menu-link">
-                <div data-i18n="Late Returns Report">Anggota</div>
-              </a>
-            </li>
+              @if (Auth::user()->Role === 'admin')          
+              <li class="menu-item {{ Request::is('laporan/buku*') ? 'active' : '' }}">
+                <a href="{{ route('laporan.laporanBuku.index') }}" class="menu-link">
+                  <div data-i18n="Late Returns Report">Buku</div>
+                </a>
+              </li>
+              <li class="menu-item {{ Request::is('laporan/anggota*') ? 'active' : '' }}">
+                <a href="{{ route('laporan.laporanAnggota.index') }}" class="menu-link">
+                  <div data-i18n="Late Returns Report">Anggota</div>
+                </a>
+              </li>
+              @endif
             <li class="menu-item {{ Request::is('laporan/peminjaman*') ? 'active' : '' }}">
               <a href="{{ route('laporan.peminjaman.index') }}" class="menu-link">
                 <div data-i18n="Borrowing Report">Peminjaman</div>
