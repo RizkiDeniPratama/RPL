@@ -62,11 +62,14 @@ class AnggotaController extends Controller
         $anggota = Anggota::findOrFail($id);
         $request->validate([
             'NIS' => 'required|string|max:255|unique:anggota,NIS,' . $anggota->NoAnggotaM . ',NoAnggotaM',
-            'Nama' => 'required|string|max:255',
+            'NamaAnggota' => 'required|string|max:255',
+            'TanggalLahir' => 'required|date',
             'JenisKelamin' => 'required|in:L,P',
             'NoTelp' => 'required|string|max:15',
             'Alamat' => 'required|string',
             'Kelas' => 'required|string|max:10',
+            'NamaOrtu' => 'required|string|max:10',
+            'NoTelpOrtu' => 'required|string|max:10',
         ]);
 
         $anggota->update($request->all());

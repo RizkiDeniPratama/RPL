@@ -96,32 +96,50 @@ class LaporanController extends Controller
 
     public function peminjaman(Request $request)
     {
-    $startDate = $request->start_date ? Carbon::parse($request->start_date) : Carbon::now()->startOfMonth();
-    $endDate = $request->end_date ? Carbon::parse($request->end_date) : Carbon::now();
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $peminjaman = collect();
+        $message = null;
 
-    $peminjamanSiswa = PeminjamanSiswa::with([
-            'anggota', 
-            'petugas',
-            'detailPeminjaman.buku',
-            'detailPeminjaman.petugas'
-        ])
-        ->whereBetween('TglPinjam', [$startDate, $endDate])
-        ->orderBy('TglPinjam', 'desc')
-        ->get();
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $request->validate([
+                'start_date' => 'required|date|before_or_equal:end_date',
+                'end_date' => 'required|date|after_or_equal:start_date',
+            ], [
+                'start_date.required' => 'Tanggal mulai wajib diisi.',
+                'end_date.required' => 'Tanggal akhir wajib diisi.',
+                'start_date.before_or_equal' => 'Tanggal mulai harus sebelum atau sama dengan tanggal akhir.',
+                'end_date.after_or_equal' => 'Tanggal akhir harus setelah atau sama dengan tanggal mulai.',
+            ]);
 
-    $peminjamanNonSiswa = PeminjamanNonSiswa::with([
-            'anggota', 
-            'petugas',
-            'detailPeminjaman.buku',
-            'detailPeminjaman.petugas'
-        ])
-        ->whereBetween('TglPinjam', [$startDate, $endDate])
-        ->orderBy('TglPinjam', 'desc')
-        ->get();
+            $peminjamanSiswa = PeminjamanSiswa::with([
+                'anggota',
+                'petugas',
+                'detailPeminjaman.buku',
+                'detailPeminjaman.petugas'
+            ])
+                ->whereBetween('TglPinjam', [$startDate, $endDate])
+                ->orderBy('TglPinjam', 'desc')
+                ->paginate(10, ['*'], 'siswa_page');
 
-    $peminjaman = $peminjamanSiswa->concat($peminjamanNonSiswa)->sortByDesc('TglPinjam');
+            $peminjamanNonSiswa = PeminjamanNonSiswa::with([
+                'anggota',
+                'petugas',
+                'detailPeminjaman.buku',
+                'detailPeminjaman.petugas'
+            ])
+                ->whereBetween('TglPinjam', [$startDate, $endDate])
+                ->orderBy('TglPinjam', 'desc')
+                ->paginate(10, ['*'], 'nonsiswa_page');
 
-    return view('laporan.peminjaman.index', compact('peminjaman', 'startDate', 'endDate'));
+            $peminjaman = $peminjamanSiswa->concat($peminjamanNonSiswa)->sortByDesc('TglPinjam');
+
+            if ($peminjaman->isEmpty()) {
+                $message = 'Data peminjaman pada periode ini tidak ditemukan.';
+            }
+        }
+
+        return view('laporan.peminjaman.index', compact('peminjaman', 'startDate', 'endDate', 'message'));
     }
 
     public function cetakPeminjaman(Request $request)

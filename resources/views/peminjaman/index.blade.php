@@ -111,7 +111,7 @@
                                                         ? route('peminjaman.edit', $pinjam->NoPinjamM) 
                                                         : route('peminjaman.edit', $pinjam->NoPinjamN) }}"
                                                class="btn btn-warning btn-sm">Edit</a> --}}
-                                                  @if (Auth::user()->Role === 'admin')
+                                                  @if (Auth::user()->Role === 'admin' && in_array($pinjam->status, ['dipinjam', 'terlambat']))
                         
                                                   <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
                                                         action="{{ $pinjam instanceof \App\Models\PeminjamanSiswa 

@@ -62,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('pengembalian/{nomorKembali}/print', [PengembalianController::class, 'print'])->name('pengembalian.print');
         Route::get('/petugas-profil', [PetugasController::class, 'profile'])->name('petugas.profil');
         Route::put('/petugas-profil', [PetugasController::class, 'updateProfile'])->name('petugas.profil.update');
+        Route::delete('/petugas/delete-account/{id}', [PetugasController::class, 'deleteAccount'])->name('petugas.delete-account');
         Route::prefix('laporan')->name('laporan.')->group(function () {
             Route::get('peminjaman', [LaporanController::class, 'peminjaman'])->name('peminjaman.index');
             Route::get('peminjaman/cetak', [LaporanController::class, 'cetakPeminjaman'])->name('peminjaman.cetak');

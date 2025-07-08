@@ -30,6 +30,7 @@ class AnggotaNonSiswaController extends Controller
             'NoAnggotaN' => 'required|string|unique:anggota_non_siswa,NoAnggotaN',
             'NIP' => 'required|string|max:20',
             'NamaAnggota' => 'required|string|max:255',
+            'JenisKelamin' => 'required|in:L,P',
             'Pekerjaan' => 'required|string|max:100',
             'TanggalLahir' => 'required|date',
             'Alamat' => 'required|string',

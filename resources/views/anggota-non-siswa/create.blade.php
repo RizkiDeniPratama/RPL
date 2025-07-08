@@ -32,7 +32,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="NamaAnggota">Nama Anggota</label>
+                                    <label class="form-label" for="NamaAnggota">Nama Lengkap</label>
                                     <input type="text" class="form-control @error('NamaAnggota') is-invalid @enderror" id="NamaAnggota" name="NamaAnggota" value="{{ old('NamaAnggota') }}" placeholder="Masukkan nama anggota" />
                                     @error('NamaAnggota')
                                     <div class="invalid-feedback">
@@ -49,11 +49,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <!-- Tambahkan field lain sesuai kebutuhan -->
-                            </div>
-                            <div class="col-md-6">
-                                <!-- Field tambahan seperti TanggalLahir, Alamat, No Telp, Tgl Daftar -->
-                                <div class="mb-3">
+                                   <div class="mb-3">
                                     <label class="form-label" for="TanggalLahir">Tanggal Lahir</label>
                                     <input type="date" class="form-control @error('TanggalLahir') is-invalid @enderror" id="TanggalLahir" name="TanggalLahir" value="{{ old('TanggalLahir') }}" />
                                     @error('TanggalLahir')
@@ -62,13 +58,16 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
+                                <!-- Tambahkan field lain sesuai kebutuhan -->
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Field tambahan seperti TanggalLahir, Alamat, No Telp, Tgl Daftar -->
+                                
+                               <div class="mb-3">
                                     <label class="form-label" for="Alamat">Alamat</label>
-                                    <input type="text" class="form-control @error('Alamat') is-invalid @enderror" id="Alamat" name="Alamat" value="{{ old('Alamat') }}" placeholder="Masukkan alamat" />
+                                    <textarea class="form-control @error('Alamat') is-invalid @enderror" name="Alamat" id="Alamat" rows="5">{{ old('Alamat') }}</textarea>
                                     @error('Alamat')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                                        <div class="mb-3">

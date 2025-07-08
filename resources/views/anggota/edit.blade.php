@@ -32,9 +32,9 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="Nama">Nama</label>
-                                    <input type="text" class="form-control @error('Nama') is-invalid @enderror" id="Nama" name="Nama" value="{{ old('Nama', $anggota->NamaAnggota) }}" required />
-                                    @error('Nama')
+                                    <label class="form-label" for="NamaAnggota">Nama</label>
+                                    <input type="text" class="form-control @error('Nama') is-invalid @enderror" id="NamaAnggota" name="NamaAnggota" value="{{ old('NamaAnggota', $anggota->NamaAnggota) }}" required />
+                                    @error('NamaAnggota')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
