@@ -205,7 +205,7 @@
     <div class="report-title">Laporan Pengembalian dan Denda</div>
     @if ($startDate != $endDate)
     <div class="date-section">
-        <p>Periode: {{ $startDate->format('d F Y') }} - {{ $endDate->format('d F  Y') }}</p>
+        Periode: {{ \Carbon\Carbon::parse($startDate)->format('d-m-Y') }} s.d. {{ \Carbon\Carbon::parse($endDate)->format('d-m-Y') }}
     </div>
     @else
     <div class="date-section">
@@ -219,9 +219,9 @@
             <thead>
                 <tr>
                     <th class="col-no">No</th>
-                    <th class="text-center">Nama Peminjam</th>
+                    <th class="text-center col-penerbit">Nama Peminjam</th>
         <th class="text-center">Jenis</th>
-        <th class="text-center">Judul Buku</th>
+        <th class="text-center col-pengarang">Judul Buku</th>
         <th class="text-center">Tanggal Pinjam</th>
         <th class="text-center">Jatuh Tempo</th>
         <th class="text-center">Tanggal Kembali</th>
@@ -230,11 +230,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pengembalian as $index => $item)
-    <tr>
+            @foreach ($pengembalian as $index => $item)
+        <tr>
         <td class="text-center">{{ $index + 1 }}</td>
         <td class="text-center">{{ $item['Nama'] }}</td>
-        <td class="text-center">{{ $item['Jenis'] }}</td>
+        <td class="text-center">{{ $item['Jenis'] }} <br></td>
         <td class="wrap-text">{{ $item['Judul'] }}</td>
         <td class="text-center">{{ \Carbon\Carbon::parse($item['TglPinjam'])->format('d-m-Y') }}</td>
         <td class="text-center">

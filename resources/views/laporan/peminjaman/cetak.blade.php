@@ -203,7 +203,7 @@
     <div class="report-title">Laporan Peminjaman</div>
     @if ($startDate != $endDate)
     <div class="date-section">
-        <p>Periode: {{ $startDate->format('d F Y') }} - {{ $endDate->format('d F  Y') }}</p>
+        Periode: {{ \Carbon\Carbon::parse($startDate)->format('d-m-Y') }} s.d. {{ \Carbon\Carbon::parse($endDate)->format('d-m-Y') }}
     </div>
     @else
     <div class="date-section">
